@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: confluent-cloud-spring-kafka-sample
+  name: confluent-cloud-spring-kafka-sample
+  namespace: default
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: confluent-cloud-spring-kafka-sample
+  template:
+    metadata:
+      labels:
+        app: confluent-cloud-spring-kafka-sample
+    spec:
+      containers:
+      - env:
+        - name: BOOTSTRAP_SERVERS
+          valueFrom:
+            configMapKeyRef:
+              key: BOOTSTRAP_SERVERS
+              name: confluent-cloud-sample-app-config
+        - name: SASL_JAAS_CONFIG
+          valueFrom:
+            configMapKeyRef:
+              key: SASL_JAAS_CONFIG
+              name: confluent-cloud-sample-app-config
+        image: <link_to_your_docker_image>
+        name: github-1123-spring-kafka-confluent-cloud-docker-example
+
