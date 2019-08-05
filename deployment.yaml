@@ -27,6 +27,6 @@ spec:
             configMapKeyRef:
               key: SASL_JAAS_CONFIG
               name: confluent-cloud-sample-app-config
-        image: <link_to_your_docker_image>
+        image: gcr.io/stoked-duality-228123/spring-kafka-cce-sample-app
         name: github-1123-spring-kafka-confluent-cloud-docker-example
 

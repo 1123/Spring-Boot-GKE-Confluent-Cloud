@@ -1,3 +1,4 @@
+configmap.yaml
 .idea/
 *.iml
 target/

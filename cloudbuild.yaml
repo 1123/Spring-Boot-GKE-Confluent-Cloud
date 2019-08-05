@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build', '-t', 'gcr.io/stoked-duality-228123/spring-kafka-cce-sample-app', '.' ]
+images:
+- 'gcr.io/stoked-duality-228123/spring-kafka-cce-sample-app'
