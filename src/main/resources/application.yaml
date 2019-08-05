@@ -3,11 +3,11 @@ spring:
     properties:
       sasl:
         jaas:
-          config: org.apache.kafka.common.security.plain.PlainLoginModule required username="<>" password="<>";
+          config: ${SASL_JAAS_CONFIG}
         mechanism: PLAIN
       security:
         protocol: SASL_SSL
     producer:
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-    bootstrap-servers: <>
+    bootstrap-servers: ${BOOTSTRAP_SERVERS}
 
