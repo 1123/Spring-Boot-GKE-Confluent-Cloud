@@ -1,10 +1,6 @@
 package io.confluent.examples.springkafkaexample;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.admin.NewTopic;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.kafka.ConcurrentKafkaListenerContainerFactoryConfigurer;
@@ -18,6 +14,10 @@ import org.springframework.kafka.listener.SeekToCurrentErrorHandler;
 import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.kafka.support.converter.StringJsonMessageConverter;
 
+/**
+ * This code is taken from Gary Russel's blog post here: https://www.confluen.io/blog/spring-for-apache-kafka-deep-dive-part-1-error-handling-message-conversion-transaction-support
+ */
+
 @SpringBootApplication
 @Slf4j
 public class Application {
@@ -25,6 +25,10 @@ public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
+
+    /**
+     * This configuration showcases Spring Kafka's DeadLetterPublishingRecoverer.
+     */
 
     @Bean
     public ConcurrentKafkaListenerContainerFactory<?, ?> kafkaListenerContainerFactory(
@@ -51,37 +55,17 @@ public class Application {
         }
     }
 
+    /**
+     * This method listens on the dead letter topic and logs received messages for demonstration purposes.
+     * It uses a separate consumer group from the listener on topic1.
+     *
+     * @param in: The received message value.
+     */
+
     @KafkaListener(id = "dltGroup", topics = "topic1.DLT")
     public void dltListen(String in) {
         log.info("Received from DLT: " + in);
     }
 
-    @Bean
-    public NewTopic topic() {
-        return new NewTopic("topic1", 1, (short) 1);
-    }
-
-    @Bean
-    public NewTopic dlt() {
-        return new NewTopic("topic1.DLT", 1, (short) 1);
-    }
-
 }
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-class Foo2 {
-
-    private String foo;
-
-}
-
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-class Foo1 {
-
-    private String foo;
-
-}

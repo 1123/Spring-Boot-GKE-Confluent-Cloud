@@ -2,3 +2,5 @@ configmap.yaml
 .idea/
 *.iml
 target/
+deployment.yaml
+cloudbuild.yaml
