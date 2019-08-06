@@ -1,11 +1,11 @@
-==== Overview
+### Overview
 
 This project shows how to connect a Spring Boot application to Apache Kafka on Confluent Cloud, and how to deploy the application on Google Kubernetes Engine. 
 
 The Java Code is taken from Gary Russel's excellent blog post on Spring Kafka here: 
 https://www.confluen.io/blog/spring-for-apache-kafka-deep-dive-part-1-error-handling-message-conversion-transaction-support
 
-==== Prerequisites
+### Prerequisites
 
 * Basic familiarity with Kafka, Java, Spring, Google Cloud Platform, Kubernetes
 * Registration with Confluent Cloud
@@ -15,7 +15,7 @@ https://www.confluen.io/blog/spring-for-apache-kafka-deep-dive-part-1-error-hand
 * `glcoud` cli installed and targeted at your GCP project
 * `kubectl` cli installed and pointed at your Kubernetes cluster
 
-==== Running the demo
+### Running the demo
 
 * Copy `configmap.yaml.template` to `configmap.yaml` and insert your API key and secret
 * Copy `cloudbuild.yaml.template` to `cloudbuild.yaml` and insert your GCP project identifier 
